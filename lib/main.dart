@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:game/view/screens/first_screen.dart';
-import 'package:game/view/screens/home_screen.dart';
-import 'package:game/view/screens/splash_screen.dart';
+ import 'package:game/view/screens/splash_screen.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
     return GetMaterialApp(
-      home: FirstScreen(),
+      home: SplashScreen(),
       debugShowCheckedModeBanner: false,
       title: '--`',
       theme: ThemeData(
