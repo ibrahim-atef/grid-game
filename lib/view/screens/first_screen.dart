@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:game/logic/main_controller.dart';
 import 'package:get/get.dart';
@@ -30,7 +32,10 @@ class FirstScreen extends StatelessWidget {
                 ),
                 SizedBox(
                   height: Get.height * .65,
-                  child: GridView.builder(physics: ScrollPhysics(parent: NeverScrollableScrollPhysics()),
+                  width: Get.width * .9,
+                  child: GridView.builder(
+                    physics:
+                        ScrollPhysics(parent: NeverScrollableScrollPhysics()),
                     itemBuilder: (context, index) {
                       return c.xNum! == index
                           ? InkWell(
@@ -42,16 +47,16 @@ class FirstScreen extends StatelessWidget {
                               ),
                             )
                           : InkWell(
-                        child: Container(
+                              child: Container(
                                 color: c.xColor!,
                               ),
-                          );
+                            );
                     },
-                    itemCount: 18,
+                    itemCount: c.initialGridCount,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisSpacing: 3,
                       mainAxisSpacing: 5,
-                      crossAxisCount: 3,
+                      crossAxisCount: sqrt(c.initialGridCount).toInt(),
                     ),
                   ),
                 )

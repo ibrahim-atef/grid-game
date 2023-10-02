@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MainController extends GetxController {
-  int initialGridCount = 9;
+  int initialGridCount = 4;
   int initialScore = 0;
   Color? xColor;
   int? xNum;
@@ -43,12 +43,17 @@ class MainController extends GetxController {
     return xColor = allColors[Random().nextInt(allColors.length)];
   }
 
+
+
   int randomNom() {
     return xNum = Random().nextInt(initialGridCount);
   }
 
+
+
   chooseRightColor() {
     initialScore += 1;
+    initialGridCount=pow(sqrt(initialGridCount).toInt()+1,2).toInt();
     randomNom();
     randomColor();
     update();
