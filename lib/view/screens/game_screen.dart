@@ -23,10 +23,18 @@ class FirstScreen extends StatelessWidget {
                 Center(
                   child: SizedBox(
                     height: Get.height * .15,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [Text("Your score is ${c.initialScore}")],
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text("Your score is ${c.initialScore}"),
+                          c.highestScore == 0
+                              ? Text("")
+                              : Text("highest score is ${c.highestScore}")
+                        ],
+                      ),
                     ),
                   ),
                 ),

@@ -1,6 +1,8 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
-import 'first_screen.dart';
+import 'game_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -23,7 +25,25 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child:  Text("here ur game")),
+      body: Center(
+        child: Column(mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Lottie.asset('assets/grid_animation.json'),
+            SizedBox(
+              height: 20,
+            ),
+            AnimatedTextKit(
+              animatedTexts: [
+                FadeAnimatedText(
+                  'G - GAME',
+                  textStyle:
+                      TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold,color: Colors.indigo),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
     );
   }
 }
