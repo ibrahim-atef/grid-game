@@ -38,36 +38,83 @@ class FirstScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: Get.height * .65,
-                  width: Get.width * .9,
-                  child: GridView.builder(
-                    physics:
-                        ScrollPhysics(parent: NeverScrollableScrollPhysics()),
-                    itemBuilder: (context, index) {
-                      return c.xNum! == index
-                          ? InkWell(
+                c.loseGame
+                    ? SizedBox(
+                        height: Get.height * .65,
+                        width: Get.width * .9,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Center(
+                              child: Text(
+                                "your score is ${c.initialScore} \n try better nexet time ",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                            ),
+                            InkWell(
                               onTap: () {
-                                c.chooseRightColor();
+                                c.playNewGame();
                               },
                               child: Container(
-                                color: c.xColor!.withOpacity(.88),
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "Play Again",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                width: 150,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                    color: Colors.red,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10))),
                               ),
                             )
-                          : InkWell(
-                              child: Container(
-                                color: c.xColor!,
-                              ),
-                            );
-                    },
-                    itemCount: c.initialGridCount,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisSpacing: 3,
-                      mainAxisSpacing: 5,
-                      crossAxisCount: sqrt(c.initialGridCount).toInt(),
-                    ),
-                  ),
-                )
+                          ],
+                        ),
+                      )
+                    : SizedBox(
+                        height: Get.height * .65,
+                        width: Get.width * .9,
+                        child: GridView.builder(
+                          physics: ScrollPhysics(
+                              parent: NeverScrollableScrollPhysics()),
+                          itemBuilder: (context, index) {
+                            return c.xNum! == index
+                                ? InkWell(
+                                    onTap: () {
+                                      c.chooseRightColor();
+                                    },
+                                    child: Container(
+                                      color: c.xColor!.withOpacity(.82),
+                                    ),
+                                  )
+                                : InkWell(
+                                    onTap: () {
+                                      c.highestScore! < c.initialScore
+                                          ? c.addHeightScore(c.initialScore)
+                                          : null;
+                                      c.loseGA();
+                                    },
+                                    child: Container(
+                                      color: c.xColor!,
+                                    ),
+                                  );
+                          },
+                          itemCount: c.initialGridCount,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisSpacing: 3,
+                            mainAxisSpacing: 5,
+                            crossAxisCount: sqrt(c.initialGridCount).toInt(),
+                          ),
+                        ),
+                      )
               ],
             ),
           );

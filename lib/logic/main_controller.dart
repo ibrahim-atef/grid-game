@@ -6,7 +6,8 @@ import 'package:get_storage/get_storage.dart';
 
 class MainController extends GetxController {
   int initialGridCount = 4;
-  int highestScore = 0;
+  int? lastHighScore;
+  int? highestScore ;
   bool loseGame = false;
   final GetStorage storage = GetStorage();
   int initialScore = 0;
@@ -58,21 +59,38 @@ class MainController extends GetxController {
   }
 
   getHighScore() async {
-    highestScore = await storage.read("score");
+    highestScore = await storage.read("score") ?? 0;
+    print(highestScore);
 
     update();
   }
 
   loseGA() {
     loseGame = true;
+getHighScore();
     update();
   }
 
   chooseRightColor() {
     initialScore += 1;
+
+    /// nice code if choose the right color hhhh
     initialGridCount = pow(sqrt(initialGridCount).toInt() + 1, 2).toInt();
     randomNom();
     randomColor();
     update();
+  }
+
+  playNewGame() {
+     initialGridCount = 4;
+
+      loseGame = false;
+
+     initialScore = 0;
+     randomNom();
+     randomColor();
+     getHighScore();
+    update();
+
   }
 }
