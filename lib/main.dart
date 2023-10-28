@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       home: SplashScreen(),
       debugShowCheckedModeBanner: false,
-      title: '--`',
+      title: 'G-Game',
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
